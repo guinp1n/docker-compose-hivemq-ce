@@ -6,9 +6,9 @@ Docker compose YAML for running HiveMQ-CE with Prometheus Monitoring Extension a
 
 1. Clone this repo
 2. Download latest HiveMQ Prometheus Extension
-2. Run docker compose up
-3. Open Grafana UI
-4. Test with an MQTT client
+3. Run docker compose up
+4. Open Grafana UI
+5. Test with an MQTT client
 
 ### 1. Clone this repo and go to the directory
 Clone the repo
@@ -41,11 +41,11 @@ When the HiveMQ has started successfully, there is the message in the log:
 INFO  - Started HiveMQ in ...s
 ```
 
-## How to reach Grafana
+### 4. How to reach Grafana
 1. Open Grafana at http://localhost:3000. Log in with default user `admin` and password `admin`.
 2. Open the dashboard "HiveMQ Cluster V2" at http://localhost:3000/dashboards
 
-## How to test with MQTT client
+### 5. How to test with MQTT client
 1. Download MQTT client [MQTT-CLI](https://hivemq.github.io/mqtt-cli/):
 ```
 curl -L https://github.com/hivemq/mqtt-cli/releases/download/v4.13.0/mqtt-cli-4.13.0.jar -o mqtt-cli.jar
