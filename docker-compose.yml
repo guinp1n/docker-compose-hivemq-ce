@@ -1,0 +1,54 @@
+version: "3.5"
+services:
+  hivemq-ce:
+    image: hivemq/hivemq-ce
+    container_name: hivemq-ce
+    environment:
+      - HIVEMQ_LOG_LEVEL=DEBUG
+    ports:
+      - "1883:1883"
+      #- "8080:8080"
+      - "9399:9399"
+    volumes:
+      - ./hivemq-prometheus-extension:/opt/hivemq/extensions/hivemq-prometheus-extension
+    networks:
+      - hivemq_net
+  grafana:
+    container_name: grafana-ce
+    image: grafana/grafana:8.0.0
+    depends_on:
+      - "prometheus"
+    ports:
+      - 3000:3000
+    volumes:
+      - grafanadata:/var/lib/grafana
+      - ./provisioning/:/etc/grafana/provisioning/
+      - ./dashboards/hivemq-v2.json:/var/lib/grafana/dashboards/hivemq-v2.json
+    networks:
+      - hivemq_net
+    restart: always
+  prometheus:
+    container_name: prometheus-ce
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - hivemq_net
+  alertmanager:
+    container_name: alertmanager-ce
+    image:  prom/alertmanager
+    volumes:
+      - ./alertmanager.yml:/config/alertmanager.yml
+    command:
+      - '--config.file=/config/alertmanager.yml'
+    ports:
+      - 9093:9093
+    networks:
+      - hivemq_net
+    restart: always
+volumes:
+  grafanadata: {}
+networks:
+  hivemq_net:
