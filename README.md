@@ -55,12 +55,15 @@ java -version
 openjdk version "11.0.18" 2023-01-17
 ```
 Make sure you have at least Java version 11!
+
 3. Run MQTT client
+
 In one terminal window run the client to subscribe to all topics:
 ```
 java -jar mqtt-cli.jar subscribe -i subscriber -t # -T
 ```
-4. In another terminal window run the client to publish a few messages:
+
+In another terminal window run the client to publish a few messages:
 ```
 for i in {0..499}; do echo $i; java -jar mqtt-cli.jar pub -i publisher$i -t test/$i -m Hello$i; sleep 2; done
 ```
