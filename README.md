@@ -16,4 +16,8 @@ Docker-compose for running HiveMQ CE in a Docker container with
 
 If everything was correct, open Grafana: http://localhost:3000/d/hivemq-dashboard/hivemq-cluster-v2?orgId=1&from=now-5m&to=now&refresh=5s
 
+Default Grafana credentials:
+   username: admin
+   password: admin
+
 
