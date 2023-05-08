@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-if ! [ -d ./hivemq-prometheus-extension ]; then
-  curl --silent --location https://github.com/hivemq/hivemq-prometheus-extension/releases/download/4.0.8/hivemq-prometheus-extension-4.0.8.zip \
-    --output ./hivemq-prometheus-extension.zip
-  unzip ./hivemq-prometheus-extension.zip -d .
-fi
-
 docker compose up -d
 sleep 20
 
@@ -17,6 +11,6 @@ java -jar mqtt-cli.jar subscribe -i subscriber -t '#' -T 2>&1 >/dev/null &
 
 for i in {0..499}; do
   #echo $i;
-  java -jar mqtt-cli.jar pub -i publisher$i -t test/$i -m Hello$i;
+  java -jar mqtt-cli.jar pub -i publisher$i -t test/$i -m Hello$i -u admin-user -pw admin-password;
   sleep 2;
 done

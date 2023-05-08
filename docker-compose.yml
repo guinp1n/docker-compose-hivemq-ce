@@ -11,6 +11,14 @@ services:
       - "9399:9399"
     volumes:
       - ./hivemq-prometheus-extension:/opt/hivemq/extensions/hivemq-prometheus-extension
+      - ./hivemq-file-rbac-extension:/opt/hivemq/extensions/hivemq-file-rbac-extension
+    secrets:
+      - source: credentials
+        target: /opt/hivemq/extensions/hivemq-file-rbac-extension/credentials.xml
+        uid: '103'
+        gid: '103'
+        mode: 0440
+
     networks:
       - hivemq_net
   grafana:
@@ -52,3 +60,6 @@ volumes:
   grafanadata: {}
 networks:
   hivemq_net:
+secrets:
+  credentials:
+    file: ./hivemq-file-rbac-extension/credentials.xml
