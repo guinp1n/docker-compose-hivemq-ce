@@ -28,9 +28,9 @@ Download the extension zip file
 curl -L https://github.com/hivemq/hivemq-prometheus-extension/releases/download/4.0.8/hivemq-prometheus-extension-4.0.8.zip \
 -o ./hivemq-prometheus-extension.zip
 ```
-Unzip into the working directory
+Unzip into the directory ./hivemq-prometheus-extension
 ```
-unzip ./hivemq-prometheus-extension.zip -d .
+unzip ./hivemq-prometheus-extension.zip -d ./hivemq-prometheus-extension
 ```
 
 ### 3. Run the docker compose up
